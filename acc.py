@@ -1,11 +1,8 @@
-# login-create-acc
-import random
-
-stfu = {}
+user_pass = {}
 
 def sign_up():
-    global stfu
-    if not stfu:
+    global user_pass
+    if not user_pass:
         while True:
             username = input("Enter a username: ")
             if username.strip():
@@ -19,7 +16,7 @@ def sign_up():
                 re_password = input("Re-enter your password to confirm: ")
                 if password == re_password:
                     print('Signed up')
-                    stfu[username] = password
+                    user_pass[username] = password
                     break
                 else:
                     print("You entered the wrong confirmation password. Please try again.")
@@ -40,7 +37,7 @@ def sign_up():
                 re_password = input("Re-enter your password to confirm: ")
                 if password == re_password:
                     print('Signed up')
-                    stfu[username] = password
+                    user_pass[username] = password
                     break
                 else:
                     print("You entered the wrong confirmation password. Please try again.")
@@ -101,12 +98,12 @@ while True:
     if choose == "1":
         sign_up()
     elif choose == "2":
-        if stfu:
-            login(stfu)
+        if user_pass:
+            login(user_pass)
         else:
             print("You need to sign up first.")
     elif choose == "3":
-        psw(stfu)
+        psw(user_pass)
     elif choose == "4":
         print("Exiting")
         break
