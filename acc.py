@@ -1,3 +1,5 @@
+import random
+
 user_pass = {}
 
 def sign_up():
