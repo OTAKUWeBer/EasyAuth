@@ -13,7 +13,7 @@ Hey there! This is a simple user authentication system built in Python. It helps
 1. First, make sure you have Python installed on your computer.
 2. Clone or download this repository to your computer.
 3. Open a terminal or command prompt and navigate to the directory where you saved the script.
-4. Run the script by typing `python user_authentication_system.py` and hitting Enter.
+4. Run the script by typing `python user_authentication_system.py` and hitting Enter. (or open the downloaded file in a code editor (e.g., Visual Studio Code) or compiler and run it)
 5. Follow the prompts on the screen to sign up, log in, or reset your password.
 
 ## Contributions Are Welcome
