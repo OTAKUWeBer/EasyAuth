@@ -28,10 +28,13 @@ def sign_up():
     else:
         while True:
             username = input("Enter a username: ")
-            if username.strip():
-                break
+            if username not in user_pass:
+                if username.strip():
+                    break
+                else:
+                    print("Username cannot be empty. Please try again.")
             else:
-                print("Username cannot be empty. Please try again.")
+                print('This username already exist')
     
         while True:
             password = input("Enter a password: ")
