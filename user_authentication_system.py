@@ -1,4 +1,5 @@
 import random
+import string
 
 user_pass = {}
 
@@ -48,6 +49,7 @@ def sign_up():
                     print("You entered the wrong confirmation password. Please try again.")
             else:
                 print("Password should be at least 6 characters long. Please try again.")
+                
 
 def login(system):
     while True:
@@ -63,20 +65,23 @@ def login(system):
         else:
             print("Wrong username. Please try again.")
             
+def captcha_system():
+    letters = string.ascii_letters + string.digits
+    return ''.join(random.choice(letters) for _ in range(6))
+
 def psw(reset):
     if not reset:
         print("No users to reset password.")
         return
     
-    words = ["fLm0Oj", "bgLp90", "a346Jk", "j9mLIon", "kQz56i"]
-    correct_word = random.choice(words)
-    print("Please type the word:", correct_word)
-    user_input = input("Enter the word: ")
-    
-    if user_input == correct_word:
-        print("You're not a robot.")
-        username3 = input("Enter your username: ")
-        if username3 in reset:
+    username3 = input("Enter your username: ")
+    if username3 in reset:
+        correct_word = captcha_system()
+        print("Please type the word:", correct_word)
+        user_input = input("Enter the word: ")
+        
+        if user_input == correct_word:
+            print("You're not a robot.")
             while True:
                 password3 = input("Enter a new password: ")
                 if len(password3) >= 6:
@@ -93,9 +98,10 @@ def psw(reset):
                 else:
                     print("Password must be at least 6 characters long.")
         else:
-            print("Username not found. Can't reset password.")
+            print("CAPTCHA failed! You might be a robot.")
     else:
-        print("CAPTCHA failed! You might be a robot.")
+        print("Username not found. Can't reset password.")
+
 
 while True:
     print("Choice\n 1. To sign Up\n 2. To login\n 3. To reset password\n 4. To Exit")
