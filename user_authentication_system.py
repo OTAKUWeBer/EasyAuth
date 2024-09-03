@@ -1,5 +1,15 @@
 import random
 import string
+import subprocess
+import os
+from getpass import getpass
+
+def clear_screen():
+    if os.name == 'nt':  # For Windows
+        subprocess.run(['cls'], shell=True)
+    else:  # For Unix/Linux/Mac
+        subprocess.run(['clear'])
+clear_screen()
 
 user_pass = {}
 
@@ -14,10 +24,11 @@ def sign_up():
                 print("Username cannot be empty. Please try again.")
     
         while True:
-            password = input("Enter a password: ")
+            password = getpass("Enter a password: ")
             if len(password) >= 6:
-                re_password = input("Re-enter your password to confirm: ")
+                re_password = getpass("Re-enter your password to confirm: ")
                 if password == re_password:
+                    clear_screen()
                     print('Signed up')
                     user_pass[username] = password
                     break
@@ -38,16 +49,19 @@ def sign_up():
                 print('This username already exist')
     
         while True:
-            password = input("Enter a password: ")
+            password = getpass("Enter a password: ")
             if len(password) >= 6:
-                re_password = input("Re-enter your password to confirm: ")
+                re_password = getpass("Re-enter your password to confirm: ")
                 if password == re_password:
+                    clear_screen()
                     print('Signed up')
                     user_pass[username] = password
                     break
                 else:
+                    clear_screen()
                     print("You entered the wrong confirmation password. Please try again.")
             else:
+                clear_screen()
                 print("Password should be at least 6 characters long. Please try again.")
                 
 
@@ -56,13 +70,16 @@ def login(system):
         username1 = input("Enter your username: ")
         if username1 in system.keys():
             print("Now enter your password:")
-            password1 = input("Password: ")
+            password1 = getpass("Password: ")
             if password1 == system[username1]:
+                clear_screen()
                 print("Logged in")
                 break
             else:
+                clear_screen()
                 print("Wrong password. Please try again.")
         else:
+            clear_screen()
             print("Wrong username. Please try again.")
             
 def captcha_system():
@@ -71,24 +88,27 @@ def captcha_system():
 
 def psw(reset):
     if not reset:
+        clear_screen()
         print("No users to reset password.")
         return
     
     username3 = input("Enter your username: ")
     if username3 in reset:
         correct_word = captcha_system()
+        clear_screen()
         print("Please type the word:", correct_word)
         user_input = input("Enter the word: ")
         
         if user_input == correct_word:
             print("You're not a robot.")
             while True:
-                password3 = input("Enter a new password: ")
+                password3 = getpass("Enter a new password: ")
                 if len(password3) >= 6:
                     if password3 != reset[username3]:
-                        re_password1 = input("Re-enter your password to confirm: ")
+                        re_password1 = getpass("Re-enter your password to confirm: ")
                         if password3 == re_password1:
                             reset[username3] = password3
+                            clear_screen()
                             print("Password reset successfully.")
                             break
                         else:
@@ -100,6 +120,7 @@ def psw(reset):
         else:
             print("CAPTCHA failed! You might be a robot.")
     else:
+        clear_screen()
         print("Username not found. Can't reset password.")
 
 
